@@ -1,0 +1,74 @@
+server:
+  port: 8080
+
+spring:
+  config:
+    import:
+      - optional:file:.env[.properties]
+      - classpath:properties/eureka-client.yml
+  application:
+    name: api-gateway
+  main:
+    web-application-type: reactive
+  cloud:
+    gateway:
+      routes:
+        - id: user-service
+          uri: lb://user-service
+          predicates:
+            - Path=/api/v1/users/*
+
+        - id: auth-service
+          uri: lb://auth-service
+          predicates:
+            - Path=/api/v1/auth/*
+
+        - id: order-service
+          uri: lb://order-service
+          predicates:
+            - Path=/api/v1/orders/*
+
+        - id: auction-product-service
+          uri: lb://auction-service
+          predicates:
+            - Path=/api/v1/auction-products/*
+
+        - id: auction-service
+          uri: lb://auction-service
+          predicates:
+            - Path=/api/v1/auctions/*
+
+        - id: coupon-service
+          uri: lb://coupon-service
+          predicates:
+            - Path=/api/v1/coupons/*
+
+        - id: user-coupon-service
+          uri: lb://coupon-service
+          predicates:
+            - Path=/api/v1/user-coupons/*
+
+        - id: preuser-service
+          uri: lb://preuser-service
+          predicates:
+            - Path=/api/v1/preusers/*
+
+        - id: preuser-product-service
+          uri: lb://preuser-service
+          predicates:
+            - Path=/api/v1/preuser-products/*
+
+        - id: product-service
+          uri: lb://product-service
+          predicates:
+            - Path=/api/v1/products/*
+
+        - id: limited-service
+          uri: lb://limited-service
+          predicates:
+            - Path=/api/v1/limited-events/*
+
+        - id: limited-products-service
+          uri: lb://limited-service
+          predicates:
+            - Path=/api/v1/limited-products/*
