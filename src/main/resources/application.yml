@@ -6,6 +6,7 @@ spring:
     import:
       - optional:file:.env[.properties]
       - classpath:properties/eureka-client.yml
+      - classpath:properties/jwt.yml
   application:
     name: api-gateway
   main:
