@@ -34,8 +34,8 @@ public class SecurityConfig {
             .httpBasic(HttpBasicSpec::disable)
             .authorizeExchange(exchange -> exchange
                 .pathMatchers(HttpMethod.POST,
-                    "/api/v1/signup",
-                    "/api/v1/login"
+                    "/api/v1/auth/signup",
+                    "/api/v1/auth/login"
                 ).permitAll()
 
                 .pathMatchers(HttpMethod.GET,
