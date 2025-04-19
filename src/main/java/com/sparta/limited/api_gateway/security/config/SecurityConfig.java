@@ -33,6 +33,8 @@ public class SecurityConfig {
             .formLogin(FormLoginSpec::disable)
             .httpBasic(HttpBasicSpec::disable)
             .authorizeExchange(exchange -> exchange
+                .pathMatchers("/actuator/**").permitAll()
+
                 .pathMatchers(HttpMethod.POST,
                     "/api/v1/auth/signup",
                     "/api/v1/auth/login"
